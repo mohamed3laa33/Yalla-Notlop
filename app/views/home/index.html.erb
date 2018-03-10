@@ -1,0 +1,14 @@
+<% if user_signed_in? %>
+	<%= current_user.name %>
+	<br>
+	<div class="container">
+	<%= image_tag current_user.image.url(:medium) %>
+	</div>
+	</br>	
+	<%= current_user.email %>
+	<%= link_to "Edit Your Profile", edit_user_registration_path %>
+	<%= link_to "Log out", destroy_user_session_path, method: :delete %>
+<%else%>
+	<%= link_to "Sign In", new_user_session_path %>
+	<%= link_to "Sign Up", new_user_registration_path %>
+<%end%>
