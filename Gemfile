@@ -36,6 +36,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem "paperclip", "~> 5.2.1"
 gem 'bootstrap', '~> 4.0.0'
+gem 'autoprefixer-rails'
 gem 'jquery-rails'
 
 group :development, :test do
