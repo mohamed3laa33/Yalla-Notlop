@@ -12,12 +12,12 @@
 
 <p>
   <strong>Menuimage:</strong>
-  <%= @order.menuImage %>
+  <%= image_tag @order.image.url(:medium) %>
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @order.user %>
+  <strong>Created By:</strong>
+  <%= @order.user.name %>
 </p>
 
 <%= link_to 'Edit', edit_order_path(@order) %> |

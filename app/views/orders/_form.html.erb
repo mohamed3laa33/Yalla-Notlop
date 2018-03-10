@@ -1,4 +1,4 @@
-<%= form_with(model: order, local: true) do |form| %>
+<%= form_with(model: order, local: true, html: { multipart: true }) do |form| %>
   <% if order.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
@@ -21,10 +21,10 @@
     <%= form.text_field :orderFrom, id: :order_orderFrom %>
   </div>
 
-  <div class="field">
-    <%= form.label :menuImage %>
-    <%= form.text_field :menuImage, id: :order_menuImage %>
-  </div>
+  <div class="form-input">
+    <%= form.label :image %>
+     <%= form.file_field :image %>
+   </div>
 
   
   <div class="actions">
