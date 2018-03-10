@@ -40,7 +40,7 @@
             <li> 
               <label class="form-label"> E-Mail Address <span class="form-required"> * </span></label>
               <div class="form-input">
-                <%= f.email_field :email, autocomplete: "email" %>
+                <%= f.email_field :email, placeholder: 'Email', autocomplete: "email" %>
               </div>
             </li>
 
@@ -55,7 +55,7 @@
               <label class="form-label"> Password <span class="form-required"> * </span></label>
               <div class="form-input">
                 <span class="form-sub-label">
-                <%= f.password_field :password, autocomplete: "off" %>
+                <%= f.password_field :password,placeholder: 'Password', autocomplete: "off" %>
                 </span>
                 <span class="form-sub-label">
                 <% if @minimum_password_length %>
@@ -69,7 +69,7 @@
             <li>
               <label class="form-label"> Password Confirmation <span class="form-required"> * </span></label>
               <div class="form-input">
-                  <%= f.password_field :password_confirmation, autocomplete: "off" %>
+                  <%= f.password_field :password_confirmation,placeholder: 'Password Confirmation', autocomplete: "off" %>
               </div>
             </li>
             </li>
