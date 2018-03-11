@@ -5,25 +5,6 @@
 	<%= image_tag current_user.image.url(:medium) %>
 	</div>
 	</br>
-	<div id="users">
-<% @users = User.all %>
-<% for user in @users %>
-  <div class="user">
-    <p>
-      <strong><%=h user.email %></strong>
-      <%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post %>
-      
-
-
-
-      <div class="clear"></div>
-    </p>
-  </div>
-<% end %>
-<%= link_to 'Destroy', friendship_path(user.friendships.first), method: :delete, data: { confirm: 'Are you sure?' } %>
-</div>	
-<h2>Friends</h2>
-
 
 
 

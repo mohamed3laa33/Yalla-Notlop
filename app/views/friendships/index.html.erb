@@ -18,7 +18,6 @@
     </p>
   </div>
 <% end %>
-<%= link_to 'Destroy', friendship_path(user.friendships.first), method: :delete, data: { confirm: 'Are you sure?' } %>
 </div>  
 <h2>Friends</h2>
 
@@ -36,8 +35,9 @@
   <tbody>
     <% @friendships.each do |friendship| %>
       <tr>
-        <td><%= friendship.user_id %></td>
-        <td><%= friendship.friend_id %></td>
+        <td>: <%= friendship.user.name %> :</td>
+        <td>: Freind to  :</td>
+        <td>: <%= friendship.friend.name %> :</td>
         <td><%= friendship.createdat %></td>
         <td><%= friendship.destroyat %></td>
         <td><%= link_to 'Show', friendship %></td>
