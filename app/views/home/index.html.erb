@@ -4,7 +4,29 @@
 	<div class="container">
 	<%= image_tag current_user.image.url(:medium) %>
 	</div>
-	</br>	
+	</br>
+	<div id="users">
+<% @users = User.all %>
+<% for user in @users %>
+  <div class="user">
+    <p>
+      <strong><%=h user.email %></strong>
+      <%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post %>
+      
+
+
+
+      <div class="clear"></div>
+    </p>
+  </div>
+<% end %>
+<%= link_to 'Destroy', friendship_path(user.friendships.first), method: :delete, data: { confirm: 'Are you sure?' } %>
+</div>	
+<h2>Friends</h2>
+
+
+
+
 	<%= current_user.email %>
 	<%= link_to "Edit Your Profile", edit_user_registration_path %>
 	<%= link_to "Log out", destroy_user_session_path, method: :delete %>
