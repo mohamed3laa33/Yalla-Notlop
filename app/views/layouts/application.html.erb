@@ -41,8 +41,15 @@
 			
 					<div class="header-left">
 						<ul>
+							<% if user_signed_in? %>
+							<li><img class="fa fa-fax" aria-hidden="true" src="/assets/1.jpg" height="50" width="50"></img> <%=link_to  "Welcome  #{current_user.name}"%></li>
+            				<li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+            <% else %>
+              <li><%= link_to('Login', new_user_session_path) %></li> 
+              <li><%= link_to('Sign Up', new_user_registration_path) %></li>
+            <% end %>
 							<li><img class="fa fa-envelope" src="../assets/not.png" height="50" width="50"></img> <a href="#"></a></li>
-							<li><img class="fa fa-fax" aria-hidden="true" src="/assets/1.jpg" height="50" width="50"></img> Mohamed Alaa</li>
+							
 						</ul>
 					</div>
 					<div class="clearfix"></div>	

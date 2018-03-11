@@ -1,24 +1,42 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Friendships</h1>
-
-<table>
-    <div id="users">
+<div id="users">
 <% @users = User.all %>
 <% for user in @users %>
+  <% if user.id == current_user.id %>
+  <%else %>
   <div class="user">
     <p>
       <strong><%=h user.email %></strong>
       <%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post %>
-      
-
-
-
       <div class="clear"></div>
     </p>
   </div>
+  <%end%>
 <% end %>
-</div>  
+</div>
+<table>
+
+ <tbody>
+  <% if current_user.id == current_user.friendships.ids %>
+    <% @friendships.each do |friendship| %>
+      <tr>
+        <td>: <%= friendship.user.name %> :</td>
+        <td>: Freind to  :</td>
+        <td>: <%= friendship.friend.name %> :</td>
+        <td><%= friendship.createdat %></td>
+        <td><%= friendship.destroyat %></td>
+        <td><%= link_to 'Show', friendship %></td>
+        <td><%= link_to 'Edit', edit_friendship_path(friendship) %></td>
+        <td><%= link_to 'Destroy', friendship, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+<% end %>
+</table>
+<table>
+      
 <h2>Friends</h2>
 
 
