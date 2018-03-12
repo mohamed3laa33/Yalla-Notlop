@@ -1,12 +1,61 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Friendships</h1>
-<div id="users">
+
+<div class="about-info">
+  <div class="w3-agileits-subscribe-form">
+    <%= form_tag(friendships_path, :method => "get", id: "search-form") do %>
+      <%= text_field_tag :search, params[:search], placeholder: "Search Users" %>
+      <%= submit_tag "Search" ,:onclick => "return validateform()" %>
+    <% end %>
+  </div>
+</div>
+<div class="col-md-12" >
+  <div class="agileinfo-heading" style="padding-bottom: 10px">
+    <h4>Freinds List</h4>
+  </div>
+</div>
+
+<div class="inner_w3l_agile_grids col-md-12">
+  <% @friendships.each do |friendship| %>
+    <% if friendship.user.id == current_user.id %>
+      <div class="col-md-3" style="padding-bottom: 10px;">
+        <div class="col-sm-4" style="width:70px;">
+          <img src="/assets/1.jpg" alt="My image" style="width:60px; height:60px;"/>
+        </div>
+        <div class="col-sm-8 ">
+            <h4><%= friendship.friend.name %></h4>
+            <%= link_to 'Unfreind', friendship, method: :delete, data: { confirm: 'Are you sure?' } %> 
+        </div>
+      </div>
+      <% end %>
+  <% end %>
+</div>
+
+
+<%if @usersearch != nil %>
+  <div class="col-md-12" >
+  <div class="agileinfo-heading" style="padding-bottom: 10px">
+    <h4>Search List</h4>
+  </div>
+</div>
+   <% @usersearch.each do |user| %>  
+   <div class="col-md-3" style="padding-bottom: 10px;padding-top: 10px; ">
+        <div class="col-sm-4" style="width:70px;">
+          <img src="/assets/1.jpg" alt="My image" style="width:60px; height:60px;"/>
+        </div>
+        <div class="col-sm-8 ">
+            <strong><%=h user.name %></strong>
+           <%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post %>
+        </div>
+    </div>
+    <% end %>
+<% end %>
+
+<div id="users" class="col-md-12">
+  <h1>Friendships for testing</h1>
   <% @users = User.all %>
   <% for user in @users %>
     <% if  user.id == current_user.id %>
     <%else %>
-      
       <div class="user">
         <p>
           <strong><%=h user.email %></strong>
@@ -14,34 +63,15 @@
           <div class="clear"></div>
         </p>
       </div>
+     
     <%end%>
   <% end %>
 </div>
-<div class="col-md-12" >
-          <div class="agileinfo-heading" style="padding-bottom: 10px">
-            <h4>Freinds List</h4>
-          </div>
- </div>
- <div class="inner_w3l_agile_grids col-md-12">
-   <% @friendships.each do |friendship| %>
-    <% if friendship.user_id == current_user.id %>
-          <div class="col-md-3" style="padding-bottom: 10px;">
-            <div class="col-sm-4" style="width:70px;">
-                    <img src="/assets/1.jpg" alt="My image" style="width:60px; height:60px;"/>
-                  </div>
-                  <div class="col-sm-8 ">
-                    <h4><%= friendship.friend.name %></h4>
-                     <%= link_to 'Unfreind', friendship, method: :delete, data: { confirm: 'Are you sure?' } %> 
-                  </div>
-          </div>
-          <% end %>
-    <% end %>
 
-  </div>
-
-<table>
+ 
+<table class="table table-hover">
       <!-- end -->
-<h2>Friends</h2>
+
 
 
   <thead>
@@ -57,9 +87,8 @@
   <tbody>
     <% @friendships.each do |friendship| %>
       <tr>
-        <td>: <%= friendship.user.name %> :</td>
-        <td>: Freind to  :</td>
-        <td>: <%= friendship.friend.name %> :</td>
+        <td> <%= friendship.user.name %> </td>
+        <td> <%= friendship.friend.name %> </td>
         <td><%= friendship.createdat %></td>
         <td><%= friendship.destroyat %></td>
         <td><%= link_to 'Show', friendship %></td>
@@ -71,5 +100,9 @@
 </table>
 
 <br>
+<!--  
+<%= link_to 'New Friendship', new_friendship_path %>-->
+<script>
+  sf 
 
-<%= link_to 'New Friendship', new_friendship_path %>
+</script>
