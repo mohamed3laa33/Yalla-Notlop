@@ -2,41 +2,45 @@
 
 <h1>Friendships</h1>
 <div id="users">
-<% @users = User.all %>
-<% for user in @users %>
-  <% if user.id == current_user.id %>
-  <%else %>
-  <div class="user">
-    <p>
-      <strong><%=h user.email %></strong>
-      <%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post %>
-      <div class="clear"></div>
-    </p>
-  </div>
-  <%end%>
-<% end %>
-</div>
-<table>
-
- <tbody>
-  <% if current_user.id == current_user.friendships.ids %>
-    <% @friendships.each do |friendship| %>
-      <tr>
-        <td>: <%= friendship.user.name %> :</td>
-        <td>: Freind to  :</td>
-        <td>: <%= friendship.friend.name %> :</td>
-        <td><%= friendship.createdat %></td>
-        <td><%= friendship.destroyat %></td>
-        <td><%= link_to 'Show', friendship %></td>
-        <td><%= link_to 'Edit', edit_friendship_path(friendship) %></td>
-        <td><%= link_to 'Destroy', friendship, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-<% end %>
-</table>
-<table>
+  <% @users = User.all %>
+  <% for user in @users %>
+    <% if  user.id == current_user.id %>
+    <%else %>
       
+      <div class="user">
+        <p>
+          <strong><%=h user.email %></strong>
+          <%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post %>
+          <div class="clear"></div>
+        </p>
+      </div>
+    <%end%>
+  <% end %>
+</div>
+<div class="col-md-12" >
+          <div class="agileinfo-heading" style="padding-bottom: 10px">
+            <h4>Freinds List</h4>
+          </div>
+ </div>
+ <div class="inner_w3l_agile_grids col-md-12">
+   <% @friendships.each do |friendship| %>
+    <% if friendship.user_id == current_user.id %>
+          <div class="col-md-3" style="padding-bottom: 10px;">
+            <div class="col-sm-4" style="width:70px;">
+                    <img src="/assets/1.jpg" alt="My image" style="width:60px; height:60px;"/>
+                  </div>
+                  <div class="col-sm-8 ">
+                    <h4><%= friendship.friend.name %></h4>
+                     <%= link_to 'Unfreind', friendship, method: :delete, data: { confirm: 'Are you sure?' } %> 
+                  </div>
+          </div>
+          <% end %>
+    <% end %>
+
+  </div>
+
+<table>
+      <!-- end -->
 <h2>Friends</h2>
 
 
