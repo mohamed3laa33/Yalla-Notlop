@@ -19,10 +19,12 @@
   <strong>Created By:</strong>
   <%= @order.user.name %>
 </p>
+<p>
+  <strong>Invited Users:</strong>
  <% @invited_friends.each do |f| %>
-      <p><%= f.id %></p>
+      <p><%= f.name %></p>
  <% end %> 
-
+</p>
 <h2>Items</h2>
 <% @order.items.each do |item| %>
   <p>

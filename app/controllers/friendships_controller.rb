@@ -1,7 +1,8 @@
 class FriendshipsController < ApplicationController
   def index
     @users = User.select("email")
-    @friendships=Friendship.all
+    # @friendships=Friendship.all
+    @friendships = Friendship.where(user_id: current_user.id)
     if params[:search]
       @usersearch = User.search(params[:search]).order("created_at DESC")
     else
