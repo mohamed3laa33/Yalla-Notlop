@@ -19,10 +19,59 @@
   <strong>Created By:</strong>
   <%= @order.user.name %>
 </p>
-
  <% @invited_friends.each do |f| %>
       <p><%= f.id %></p>
  <% end %> 
 
+<h2>Items</h2>
+<% @order.items.each do |item| %>
+  <p>
+    <strong>Item:</strong>
+    <%= item.item %>
+  </p>
+  <p>
+    <strong>Amount:</strong>
+    <%= item.amount %>
+  </p>
+  <p>
+    <strong>Price:</strong>
+    <%= item.price %>
+  </p>
+ 
+  <p>
+    <strong>Comment:</strong>
+    <%= item.comment %>
+  </p>
+  <p>
+  	<%= link_to 'Destroy Item', [item.order, item],
+               method: :delete,
+               data: { confirm: 'Are you sure?' },class:'btn btn-primary'  %>
+  </p>
+<% end %>
+
+
+<h2>Add a Item:</h2>
+<%= form_with(model: [ @order, @order.items.build ], local: true) do |form| %>
+  <%= form.hidden_field 'user_id' , value: current_user.id %> 
+  <p>
+    <%= form.label :item %><br>
+    <%= form.text_field :item %>
+  </p>
+  <p>
+    <%= form.label :amount %><br>
+    <%= form.number_field :amount %>
+  </p>
+  <p>
+    <%= form.label :price %><br>
+    <%= form.number_field :price %>
+  </p>
+  <p>
+    <%= form.label :comment %><br>
+    <%= form.text_area :comment %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>
