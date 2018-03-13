@@ -1,10 +1,22 @@
 Rails.application.routes.draw do
+
   resources :group_users
   resources :groups
+  #resources :friendships
+  #resources :orders
+
+
+
+  
+  get 'events/index'
+  mount ActionCable.server => '/cable'
+
+  resources :orders do
+  resources :items
+  end
   resources :friendships
-  resources :orders
-  resources :group
-  resources :user_groups
+  # resources :orders
+
   devise_for :users
   get 'home/index'
   root 'home#index'

@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20180313142419) do
 
  create_table "events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -17,6 +18,11 @@ ActiveRecord::Schema.define(version: 20180313142419) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
 end
+
+
+
+ActiveRecord::Schema.define(version: 20180313114555) do
+
 
   create_table "friends", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
@@ -44,6 +50,7 @@ end
     t.index ["user_id"], name: "index_group_users_on_user_id"
   end
 
+
   create_table "groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
     t.string "name"
@@ -52,12 +59,14 @@ end
     t.index ["user_id"], name: "index_groups_on_user_id"
   end
 
+
   create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "name"
-    t.integer "price"
+    t.string "item"
     t.integer "amount"
-    t.bigint "order_id"
+    t.float "price", limit: 24
+    t.text "comment"
     t.bigint "user_id"
+    t.bigint "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_items_on_order_id"
@@ -114,9 +123,11 @@ end
   end
 
   add_foreign_key "friends", "users"
+
   add_foreign_key "group_users", "groups"
   add_foreign_key "group_users", "users"
   add_foreign_key "groups", "users"
+
   add_foreign_key "items", "orders"
   add_foreign_key "items", "users"
   add_foreign_key "notifications", "orders"
