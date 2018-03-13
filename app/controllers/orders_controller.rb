@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-  before_action :order_params, only: [:create]
+  before_action :order_params, only: [:create, :update]
 
   # GET /orders
   # GET /orders.json
@@ -25,6 +25,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/1/edit
   def edit
+    @users = Friendship.where(user_id: current_user.id)
   end
 
 
@@ -49,8 +50,12 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
-    @friend = User.find(order_friend['friend'])
-    @friend.orders << @order
+    # @user = current_user
+    # @order = @user.order.new(order_params)
+    @order = Order.find(params[:id])
+    @order.update_attributes(order_params)
+    # @friend = User.find(order_friend['friend'])
+    # @friend.orders << @order
     respond_to do |format|
       if @order.update(order_params)
         format.html { redirect_to @order, notice: 'Order was successfully updated.' }
