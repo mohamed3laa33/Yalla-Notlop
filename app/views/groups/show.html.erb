@@ -14,7 +14,7 @@
 <% if @group.user.friendships.any? %>
   <%for f in @group.user.friendships %>
 <li>
-<%=h frienship.friend.user %>
+<%=h f.friend.name %>
            <%= link_to "Add", group_users_path(:user_id => f.friend,:group_id => @group), :method => :post %>
 </li>
 <%end%>
@@ -31,7 +31,7 @@
    <%for g in @group.group_users %>
 <li>
 <%=h g.user.name %>
-           <%= link_to "remove", group_users_path(g), :method => :delete %>
+           <%= link_to "remove", group_user_url(g), :method => :delete %>
 </li>
 <%end%>
 <%end%>

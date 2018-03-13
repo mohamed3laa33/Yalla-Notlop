@@ -2,11 +2,12 @@
 
 <p>
   <strong>Group name:</strong>
-  <%= @group_user.group %>
+  <%= @group_user.group.name %>
 </p>
 <p>
-  <strong>Created by:</strong>
-  <%= @group_user.user.user %>
+  <!--<strong>Created by:</strong>-->
+  <strong>members:</strong>
+  <%= @group_user.user.name %>
 </p>
 
 

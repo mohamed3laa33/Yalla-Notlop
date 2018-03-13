@@ -14,7 +14,7 @@
   <tbody>
     <% @group_users.each do |group_user| %>
       <tr>
-        <td><%= group_user.user.user %></td>
+        <td><%= group_user.user.name %></td>
         <td><%= group_user.group.name %></td>
         <td><%= group_user.group.id %></td>
         <td><%= link_to 'Show', group_user %></td>

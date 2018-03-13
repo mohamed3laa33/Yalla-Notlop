@@ -10,19 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20180313142419) do
 
- create_table "events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-end
-
-
-
-ActiveRecord::Schema.define(version: 20180313114555) do
-
+  end
 
   create_table "friends", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
@@ -50,7 +44,6 @@ ActiveRecord::Schema.define(version: 20180313114555) do
     t.index ["user_id"], name: "index_group_users_on_user_id"
   end
 
-
   create_table "groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
     t.string "name"
@@ -58,7 +51,6 @@ ActiveRecord::Schema.define(version: 20180313114555) do
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_groups_on_user_id"
   end
-
 
   create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "item"
@@ -99,7 +91,8 @@ ActiveRecord::Schema.define(version: 20180313114555) do
   create_table "orders_users", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "order_id"
     t.integer "user_id"
-end
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -123,11 +116,9 @@ end
   end
 
   add_foreign_key "friends", "users"
-
   add_foreign_key "group_users", "groups"
   add_foreign_key "group_users", "users"
   add_foreign_key "groups", "users"
-
   add_foreign_key "items", "orders"
   add_foreign_key "items", "users"
   add_foreign_key "notifications", "orders"

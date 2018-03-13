@@ -25,7 +25,7 @@ class GroupUsersController < ApplicationController
   # POST /group_users.json
   def create
     #@group_user = GroupUser.new(group_user_params)
-    @group = Group.find(params[:id])
+    @group = Group.find(params[:group_id])
     @group_user = @group.group_users.build(:user_id => params[:user_id] , :group_id => params[:group_id])
 
     respond_to do |format|
@@ -56,8 +56,8 @@ class GroupUsersController < ApplicationController
   # DELETE /group_users/1
   # DELETE /group_users/1.json
   def destroy
-    @group = GroupUser.find(params[:id])
-    @group.destroy
+    @group_user = GroupUser.find(params[:id])
+    @group_user.destroy
     
     respond_to do |format|
       format.html { redirect_to group_users_url, notice: 'Group user was successfully destroyed.' }
