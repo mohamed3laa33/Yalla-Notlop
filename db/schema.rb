@@ -10,15 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180313110448) do
+ActiveRecord::Schema.define(version: 20180313114555) do
 
   create_table "events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-ActiveRecord::Schema.define(version: 20180313114555) do
 
   create_table "friends", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
@@ -41,6 +39,15 @@ ActiveRecord::Schema.define(version: 20180313114555) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "invitations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.bigint "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_invitations_on_order_id"
+    t.index ["user_id"], name: "index_invitations_on_user_id"
   end
 
   create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -116,6 +123,8 @@ ActiveRecord::Schema.define(version: 20180313114555) do
   end
 
   add_foreign_key "friends", "users"
+  add_foreign_key "invitations", "orders"
+  add_foreign_key "invitations", "users"
   add_foreign_key "items", "orders"
   add_foreign_key "items", "users"
   add_foreign_key "notifications", "orders"

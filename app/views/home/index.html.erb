@@ -16,6 +16,12 @@
     				<td>Email:</td>
 					<td><%= current_user.email %></td>
     			</tr>
+    			<tr>
+    				<td>Orders:</td> 				
+    				<% Order.joins(:users).where(users: {id: current_user.id}).each do |order| %>
+    				<td> <%= order.orderFrom %></td>
+    				<%end %>
+    			</tr>
     			<tr class="table-active">
 					<td><%= link_to "Edit Your Profile", edit_user_registration_path %></td>
     			</tr>
