@@ -20,5 +20,9 @@
   <%= @order.user.name %>
 </p>
 
+ <% @invited_friends.each do |f| %>
+      <p><%= f.id %></p>
+ <% end %> 
+
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>
