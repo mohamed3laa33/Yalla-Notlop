@@ -10,7 +10,7 @@ class FriendshipsController < ApplicationController
   def create
     @friendship = current_user.friendships.build(:friend_id => params[:friend_id])
     if @friendship.save
-      redirect_to root_url
+      redirect_to friendships_path
     else
       redirect_to root_url
     end
@@ -20,7 +20,7 @@ class FriendshipsController < ApplicationController
     @friendship = current_user.friendships.find(params[:id])
     @friendship.destroy
     flash[:notice] = "Removed friendship."
-    redirect_to root_url
+    redirect_to friendships_path
   end
   def find
     @friend = User.where(email: params[:fmail]).take
