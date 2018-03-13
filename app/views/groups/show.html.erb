@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+
+
+<p>
+  <strong>Name:</strong>
+  <%= @group.name %>
+</p>
+
+
+
+
+<ul>
+<% if @group.user.friendships.any? %>
+  <%for f in @group.user.friendships %>
+<li>
+<%=h frienship.friend.user %>
+           <%= link_to "Add", group_users_path(:user_id => f.friend,:group_id => @group), :method => :post %>
+</li>
+<%end%>
+
+<%else%>
+<p>u haven't friends</p>
+<%end%>
+
+</ul>
+
+<p>
+  <strong>members:</strong>
+<% if @group.group_users.any? %>
+   <%for g in @group.group_users %>
+<li>
+<%=h g.user.name %>
+           <%= link_to "remove", group_users_path(g), :method => :delete %>
+</li>
+<%end%>
+<%end%>
+
+</ul>
+</p>
+
+
+<%= link_to 'Edit', edit_group_path(@group) %> |
+<%= link_to 'Back', groups_path %>
