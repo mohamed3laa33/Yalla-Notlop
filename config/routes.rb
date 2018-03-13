@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+  
   get 'events/index'
   mount ActionCable.server => '/cable'
 
+  resources :orders do
+  resources :items
+  end
   resources :friendships
-  resources :orders
+  # resources :orders
   devise_for :users
   get 'home/index'
   root 'home#index'

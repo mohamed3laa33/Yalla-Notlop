@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 20180313110448) do
     t.datetime "updated_at", null: false
   end
 
+ActiveRecord::Schema.define(version: 20180313114555) do
+
   create_table "friends", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
     t.integer "f_id"
@@ -42,11 +44,12 @@ ActiveRecord::Schema.define(version: 20180313110448) do
   end
 
   create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "name"
-    t.integer "price"
+    t.string "item"
     t.integer "amount"
-    t.bigint "order_id"
+    t.float "price", limit: 24
+    t.text "comment"
     t.bigint "user_id"
+    t.bigint "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_items_on_order_id"
