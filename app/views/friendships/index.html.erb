@@ -55,26 +55,7 @@
     <% end %>
 <% end %>
 
-<div id="users" class="col-md-12">
-  <h1>Friendships for testing</h1>
-  <% @users = User.all %>
-  <% for user in @users %>
-    <% if  user.id == current_user.id %>
-    <%else %>
-     <% if @friendships.ids == current_user.id %>
-    <% else %>
-      <div class="user">
-        <p>
-          <strong><%=h user.email %></strong>
-          <%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post %>
-          <div class="clear"></div>
-        </p>
-      </div>
-         <%end%>
 
-    <%end%>
-  <% end %>
-</div>
 
  
 <table class="table table-hover">
