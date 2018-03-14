@@ -10,34 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20180313114555) do
-=======
->>>>>>> 88ab5fbdad15813223f8d3d454bb4be171ce98d1
-
->>>>>>> d608df712cc5858343eb23fae96997eff0ce31e4
-ActiveRecord::Schema.define(version: 20180313142419) do
+ActiveRecord::Schema.define(version: 20180314103348) do
 
   create_table "events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-<<<<<<< HEAD
+    t.integer "user_id"
   end
-=======
-end
 
-
-
-<<<<<<< HEAD
-=======
-ActiveRecord::Schema.define(version: 20180313114555) do
-
->>>>>>> d608df712cc5858343eb23fae96997eff0ce31e4
-
->>>>>>> 88ab5fbdad15813223f8d3d454bb4be171ce98d1
   create_table "friends", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
     t.integer "f_id"
@@ -72,21 +53,6 @@ ActiveRecord::Schema.define(version: 20180313114555) do
     t.index ["user_id"], name: "index_groups_on_user_id"
   end
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-  create_table "invitations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "user_id"
-    t.bigint "order_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["order_id"], name: "index_invitations_on_order_id"
-    t.index ["user_id"], name: "index_invitations_on_user_id"
-  end
-=======
->>>>>>> 88ab5fbdad15813223f8d3d454bb4be171ce98d1
-
->>>>>>> d608df712cc5858343eb23fae96997eff0ce31e4
   create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "item"
     t.integer "amount"
@@ -151,22 +117,9 @@ ActiveRecord::Schema.define(version: 20180313114555) do
   end
 
   add_foreign_key "friends", "users"
-<<<<<<< HEAD
   add_foreign_key "group_users", "groups"
   add_foreign_key "group_users", "users"
   add_foreign_key "groups", "users"
-=======
-<<<<<<< HEAD
-  add_foreign_key "invitations", "orders"
-  add_foreign_key "invitations", "users"
-=======
-
-  add_foreign_key "group_users", "groups"
-  add_foreign_key "group_users", "users"
-  add_foreign_key "groups", "users"
-
->>>>>>> 88ab5fbdad15813223f8d3d454bb4be171ce98d1
->>>>>>> d608df712cc5858343eb23fae96997eff0ce31e4
   add_foreign_key "items", "orders"
   add_foreign_key "items", "users"
   add_foreign_key "notifications", "orders"
