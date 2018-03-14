@@ -4,4 +4,19 @@ class Order < ApplicationRecord
   belongs_to :user
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100#" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+  
+
+ 
+  	
+
+
+  after_create_commit { create_event }
+  def create_event()
+  	@orderid = Order.last.id
+  	@userIDs = User.joins(:orders).where(orders: {id: @orderid})
+  	@userIDs.each  do |user|
+    	@event = Event.create message: "A new comment has been created",user_id: user.id
+	end
+  end
+  
 end
