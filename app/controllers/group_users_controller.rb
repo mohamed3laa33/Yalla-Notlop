@@ -46,7 +46,7 @@ class GroupUsersController < ApplicationController
   def update
     respond_to do |format|
       if @group_user.update(group_user_params)
-        format.html { redirect_to @groups_path(@group_user),, notice: 'Group user was successfully updated.' }
+        format.html { redirect_to @groups, notice: 'Group user was successfully updated.' }
         format.json { render :show, status: :ok, location: @group_user }
       else
         format.html { render :edit }
