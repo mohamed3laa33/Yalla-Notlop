@@ -7,6 +7,8 @@
   </div>
 <% if @group.user.friendships.any? %>
   <%for f in @group.user.friendships %>
+  <% if @list.include? f.friend_id%>
+  <% else %>
   <div class="col-md-3" style="padding-bottom: 10px; padding-top: 10px">
         <div class="col-sm-4" style="width:70px;">
         <%=image_tag(f.friend.image.url, :width => 60, :height => 60, :crop => :fill) %>
@@ -16,8 +18,8 @@
 			<%= link_to "Add", group_users_path(:user_id => f.friend,:group_id => @group), :method => :post %>
 	     </div>
    </div>
-
-<%end%>
+   <%end%>
+   <%end%>
 
 <%else%>
 <p>u haven't friends</p>
