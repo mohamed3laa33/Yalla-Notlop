@@ -25,9 +25,9 @@
     <%= form.label :image %>
      <%= form.file_field :image %>
    </div>
-   <% @users.each do |u| %>
+<!--    <% @users.each do |u| %>
    <p><%= u.friend_id %></p>
-   <% end %>
+   <% end %> -->
    <div class="field">
   <%= collection_check_boxes(:order, :user_ids, @users, :friend_id, :name_with_initial) %>
   </div>
