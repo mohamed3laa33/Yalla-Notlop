@@ -34,6 +34,7 @@ class OrdersController < ApplicationController
   def create
     @user = current_user
     @order = @user.order.new(order_params)
+
     # @friend = User.find(order_friend['friend'])
     # @friend.orders << @order
     respond_to do |format|

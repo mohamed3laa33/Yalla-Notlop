@@ -25,16 +25,18 @@ class GroupUsersController < ApplicationController
   # POST /group_users.json
   def create
     #@group_user = GroupUser.new(group_user_params)
-    @group = Group.find(params[:id])
+    @group = Group.find(params[:group_id])
     @group_user = @group.group_users.build(:user_id => params[:user_id] , :group_id => params[:group_id])
 
     respond_to do |format|
       if @group_user.save
-        format.html { redirect_to @group_user, notice: 'Group user was successfully created.' }
+        format.html { redirect_to groups_path(@group_user), notice: 'Group user was successfully created.' }
         format.json { render :show, status: :created, location: @group_user }
       else
         format.html { render :new }
         format.json { render json: @group_user.errors, status: :unprocessable_entity }
+              redirect_to root_url
+
       end
     end
   end
@@ -44,7 +46,7 @@ class GroupUsersController < ApplicationController
   def update
     respond_to do |format|
       if @group_user.update(group_user_params)
-        format.html { redirect_to @group_user, notice: 'Group user was successfully updated.' }
+        format.html { redirect_to @groups, notice: 'Group user was successfully updated.' }
         format.json { render :show, status: :ok, location: @group_user }
       else
         format.html { render :edit }
@@ -56,8 +58,8 @@ class GroupUsersController < ApplicationController
   # DELETE /group_users/1
   # DELETE /group_users/1.json
   def destroy
-    @group = GroupUser.find(params[:id])
-    @group.destroy
+    @group_user = GroupUser.find(params[:id])
+    @group_user.destroy
     
     respond_to do |format|
       format.html { redirect_to group_users_url, notice: 'Group user was successfully destroyed.' }
