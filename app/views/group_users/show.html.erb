@@ -1,16 +1,15 @@
-<p id="notice"><%= notice %></p>
+
+
 
 <p>
-  <strong>Group name:</strong>
-  <%= @group_user.group.name %>
-</p>
-<p>
   <!--<strong>Created by:</strong>-->
-  <strong>members:</strong>
+  <strong> you add : </strong>
   <%= @group_user.user.name %>
 </p>
 
+<p>
+  <strong>in Group :</strong>
+  <%= @group_user.group.name %>
+</p>
 
 
-<%= link_to 'Edit', edit_group_user_path(@group_user) %> |
-<%= link_to 'Back', group_users_path %>
