@@ -7,8 +7,8 @@ class OrdersController < ApplicationController
   def index
     # @orders = Order.all
     # @orders = Order.where(user_id: current_user.id)
-    @orders = Order.joins(:users).where(users: {id: current_user.id})
-    @myOrders = Order.where(user_id: current_user.id)
+    @orders = Order.joins(:users).where(users: {id: current_user.id}).paginate(page: params[:page], per_page: 2)
+    @myOrders = Order.where(user_id: current_user.id).paginate(page: params[:page], per_page: 2)
   end
 
   # GET /orders/1

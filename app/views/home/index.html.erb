@@ -1,8 +1,8 @@
+<br>
+<div class="container">
 <% if user_signed_in? %>
-	
 	<div class="col-md-6">
-		<%=image_tag(current_user.image.url, :width => 200, :height => 200, :crop => :fill) %>				
-	
+		<%=image_tag(current_user.image.url, :width => 200, :height => 200, :crop => :fill) %>	
 	</div>
 	</br>
 	<div class="col-md-3 text-left">
@@ -16,12 +16,12 @@
     				<td>Email:</td>
 					<td><%= current_user.email %></td>
     			</tr>
-    			<tr>
+    			<!-- <tr>
     				<td>Orders:</td> 				
     				<% Order.joins(:users).where(users: {id: current_user.id}).each do |order| %>
     				<td> <%= order.orderFrom %></td>
     				<%end %>
-    			</tr>
+    			</tr> -->
     			<tr class="table-active">
 					<td><%= link_to "Edit Your Profile", edit_user_registration_path %></td>
     			</tr>
@@ -38,3 +38,4 @@
 	<%= link_to "Sign In", new_user_session_path %>
 	<%= link_to "Sign Up", new_user_registration_path %>
 <%end%>
+</div>

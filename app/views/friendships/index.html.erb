@@ -1,3 +1,4 @@
+<div class="container">
 <div class="about-info">
 <div class="w3-agileits-subscribe-form">
 <%= form_tag(friendships_path, :method => "get", id: "search-form") do %>
@@ -17,6 +18,7 @@
 <% end %>
 </div>
 </div>
+<br>
 <div class="inner_w3l_agile_grids col-md-12">
   <div class="col-md-12" >
   <div class="agileinfo-heading" style="padding-bottom: 10px">
@@ -25,7 +27,6 @@
 </div>
   <% @friendships.each do |friendship| %>
     <% if friendship.user_id == current_user.id %>
-    
       <div class="col-md-3" style="padding-bottom: 10px; padding-top: 10px">
         <div class="col-sm-4" style="width:70px;">
         <%=image_tag(friendship.friend.image.url, :width => 60, :height => 60, :crop => :fill) %>
@@ -39,7 +40,6 @@
   <% end %>
 </div>
 <%if @usersearch != nil %>
-
   <div class="col-md-12" >
   <div class="agileinfo-heading" style="padding-bottom: 10px">
     <h4>Search List</h4>
@@ -107,3 +107,4 @@
 <br>
 <!--  
 <%= link_to 'New Friendship', new_friendship_path %>-->
+</div>
