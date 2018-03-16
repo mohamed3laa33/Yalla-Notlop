@@ -15,7 +15,7 @@ class Order < ApplicationRecord
   	@orderid = Order.last.id
   	@userIDs = User.joins(:orders).where(orders: {id: @orderid})
   	@userIDs.each  do |user|
-    	@event = Event.create message: "A new comment has been created",user_id: user.id
+    	@event = Event.create message: "A new comment has been created", user_id: user.id
 	end
   end
   
