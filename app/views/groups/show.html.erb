@@ -3,30 +3,46 @@
 
 
 <p>
-  <strong>Name:</strong>
+<strong>Group:</strong>
   <%= @group.name %>
 </p>
 
 
 
 
+
+<p>
+<strong>your friend :</strong>
+ 
 <ul>
+
 <% if @group.user.friendships.any? %>
   <%for f in @group.user.friendships %>
+
+
+<% if GroupUser.where(user_id:f.friend.id,group_id:@group.id).present? %>
+   
+   <% else %>
 <li>
 <%=h f.friend.name %>
-           <%= link_to "Add", group_users_path(:user_id => f.friend,:group_id => @group), :method => :post %>
+<%= link_to "Add", group_users_path(:user_id => f.friend,:group_id => @group), :method => :post %>
 </li>
 <%end%>
-
+<%end%>
 <%else%>
 <p>u haven't friends</p>
 <%end%>
 
 </ul>
+</p>
+
+
+
+
 
 <p>
-  <strong>members:</strong>
+<strong>members:</strong>
+<ul>
 <% if @group.group_users.any? %>
    <%for g in @group.group_users %>
 <li>
@@ -40,5 +56,5 @@
 </p>
 
 
-<%= link_to 'Edit', edit_group_path(@group) %> |
+
 <%= link_to 'Back', groups_path %>
