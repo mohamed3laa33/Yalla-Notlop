@@ -10,6 +10,10 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
+    @list = []
+    @group.group_users.each do |u|
+      @list.push(u.user.id)
+    end
   end
 
   # GET /groups/new
